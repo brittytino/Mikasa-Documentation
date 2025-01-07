@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getDocBySlug } from '@/lib/docs'
+import { getDocBySlug } from '@/lib/docs';
 import Markdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'

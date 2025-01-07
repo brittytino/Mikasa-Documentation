@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { getAllDocs } from '@/lib/docs'
+import { getAllDocs } from '@/lib/docs';
 
 export default function SearchPage() {
   const searchParams = useSearchParams()

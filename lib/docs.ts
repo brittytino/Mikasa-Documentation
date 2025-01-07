@@ -34,3 +34,19 @@ export function getDocSlugs() {
     file.slice(docsDirectory.length + 1).replace(/\.md$/, '').replace(/\\/g, '/')
   );
 }
+
+export function getDocBySlug(slug: string) {
+  const realSlug = slug.replace(/\.md$/, '');
+  const fullPath = path.join(docsDirectory, `${realSlug}.md`);
+  const fileContents = fs?.readFileSync(fullPath, 'utf8');
+
+  return {
+    slug: realSlug,
+    content: fileContents,
+  };
+}
+
+export function getAllDocs() {
+  const slugs = getDocSlugs();
+  return slugs.map(slug => getDocBySlug(slug));
+}
