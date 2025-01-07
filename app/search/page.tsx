@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { getAllDocs } from '@/lib/docs';
 
-export default function SearchPage() {
+function SearchResults() {
   const searchParams = useSearchParams()
   const query = searchParams.get('q')
   const [results, setResults] = useState([])
@@ -31,14 +31,20 @@ export default function SearchPage() {
               <Link href={`/docs/${doc.slug}`} className="text-xl font-semibold hover:underline">
                 {doc.frontmatter.title}
               </Link>
-              <p className="mt-2 text-gray-600">{doc.content.slice(0, 200)}...</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No results found.</p>
+        <p>No results found</p>
       )}
     </div>
-  )
+  );
 }
 
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SearchResults />
+    </Suspense>
+  );
+}
