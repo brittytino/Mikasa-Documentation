@@ -1,0 +1,30 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import Navbar from '../components/Navbar.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{frontmatter.title} - Mikasa Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 font-[Inter]">
+    <Navbar />
+    <div class="flex">
+      <Sidebar />
+      <main class="flex-1 max-w-4xl mx-auto px-6 py-8">
+        <article class="prose prose-slate max-w-none prose-headings:font-semibold prose-a:text-blue-600">
+          <slot />
+        </article>
+      </main>
+    </div>
+  </body>
+</html>
